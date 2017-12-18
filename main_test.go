@@ -13,19 +13,14 @@ import (
 	"."
 )
 
-const (
-	host     = "localhost"
-	port     = 5432
-	user     = "test"
-	password = "Doskids23"
-	dbname   = "test"
-)
-
 var a main.App
 
 func TestMain(m *testing.M) {
 	a = main.App{}
-	a.Initialize(user, password, dbname)
+	a.Initialize(
+		os.Getenv("TEST_DB_USERNAME"),
+		os.Getenv("TEST_DB_PASSWORD"),
+		os.Getenv("TEST_DB_NAME"))
 
 	ensureTableExists()
 

@@ -1,16 +1,13 @@
 package main
 
-const (
-	host     = "localhost"
-	port     = 5432
-	user     = "test"
-	password = "Doskids23"
-	dbname   = "test"
-)
+import "os"
 
 func main() {
 	a := App{}
-	a.Initialize(user, password, dbname)
+	a.Initialize(
+		os.Getenv("TEST_DB_USERNAME"),
+		os.Getenv("TEST_DB_PASSWORD"),
+		os.Getenv("TEST_DB_NAME"))
 
 	a.Run(":8080")
 }
